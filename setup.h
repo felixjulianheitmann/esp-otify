@@ -20,7 +20,7 @@ namespace Wifi {
 // boot and holding it for at least `EEPROM_reset_time` seconds.
 // If set to false, the values of `SSID` and `Password` will be used to connect
 // to a local network.
-constexpr bool StartWithWebConfig = false;
+constexpr bool StartWithWebConfig = true;
 constexpr int SsidBufferSize      = 64;
 constexpr int PasswordBufferSize  = 128;
 
@@ -32,9 +32,8 @@ constexpr char Password[] = "";
 namespace ConfigServer {
 
 constexpr uint16_t Port                  = 80;
-constexpr std::array<uint8_t, 4> LocalIp = {192, 168, 0, 1};
-constexpr char Hostname[]                = "config.local";
-constexpr char Ssid[]                    = "ESP-01 Server";
+constexpr std::array<uint8_t, 4> LocalIp = {1, 0, 0, 1};
+constexpr char Ssid[]                    = "ESP-otify Server";
 constexpr char Password[]                = "";
 
 }  // namespace ConfigServer

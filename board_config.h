@@ -9,7 +9,7 @@
 #pragma once
 
 #include "setup.h"
-
+#include "types.h"
 namespace Board {
 
 namespace Led {
@@ -27,9 +27,13 @@ constexpr int ResetPin              = 2;
 constexpr unsigned long ResetTimeMs = 3000;
 constexpr bool ResetPinActiveHigh   = false;
 
-constexpr ptrdiff_t WifiConfiguredReg = 0x00000000;
-constexpr ptrdiff_t WifiSsidReg       = WifiConfiguredReg + 8;
-constexpr ptrdiff_t WifiPasswordReg = WifiSsidReg + Setup::Wifi::SsidBufferSize;
+constexpr Addresses_t Addresses{
+    .WifiConfiguredReg = 0x0000,
+    .WifiSsidLengthReg = 0x0004,
+    .WifiPwLengthReg   = 0x0006,
+    .WifiSsidReg       = 0x0008,
+    .WifiPasswordReg   = 0x0008 + Setup::Wifi::SsidBufferSize,
+};
 
 constexpr ptrdiff_t Size =
     8 + Setup::Wifi::SsidBufferSize + Setup::Wifi::SsidBufferSize;

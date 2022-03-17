@@ -6,6 +6,8 @@
  * @date 2022-03-13
  */
 
+#pragma once
+
 #include <Arduino.h>
 
 template <bool flag>
@@ -23,5 +25,8 @@ inline void dbgln(String const &str) {
 }
 
 namespace Dbg {
-constexpr bool Srv = true;
+
+constexpr bool Srv    = false;  // Enable configuration web server debugging
+constexpr bool Eeprom = false;  // Enable EEPROM debugging
+
 }  // namespace Dbg

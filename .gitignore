@@ -5,7 +5,11 @@
 .pio
 .vscode/c_cpp_properties.json
 .vscode/launch.json
-src/resources/webserver/index.h
 
 # Personal settings
 .vscode/settings.json
+
+# Python artifacts
+pathlib
+src/resources/webserver/index.h
+src/resources/webserver/submit.h
