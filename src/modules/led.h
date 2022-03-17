@@ -7,30 +7,18 @@
  *
  */
 
-#include <Arduino.h>
+#pragma once
+
+#include <util.h>
 
 template <int Gpio, bool ActiveHigh>
 class Led {
    public:
-    Led() { pinMode(Gpio, OUTPUT); }
+    static auto on() { setPin(Gpio, HIGH, ActiveHigh); }
 
-    auto on() {
-        if constexpr (ActiveHigh) {
-            digitalWrite(Gpio, HIGH);
-        } else {
-            digitalWrite(Gpio, LOW);
-        }
-    }
+    static auto off() { setPin(Gpio, LOW, ActiveHigh); }
 
-    auto off() {
-        if constexpr (ActiveHigh) {
-            digitalWrite(Gpio, LOW);
-        } else {
-            digitalWrite(Gpio, HIGH);
-        }
-    }
-
-    auto toggle() { digitalWrite(Gpio, !digitalRead(Gpio)); }
+    static auto toggle() { setPin(Gpio, !getPin(Gpio)); }
 
     /**
      * @brief the LED will toggle `times` times with
@@ -39,7 +27,7 @@ class Led {
      * positive
      * @param period period in ms of full on-off-cycle
      */
-    auto blink(int times, unsigned long period) {
+    static auto blink(int times, unsigned long period) {
         times = abs(times);
         for (int i = 0; i < times; i++) {
             toggle();
